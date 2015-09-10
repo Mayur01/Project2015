@@ -39,7 +39,5 @@ namespace Project2015
             MessageBox.Show("Length1:" + email.Length + "\nLength2: " + saltedHashedPass.Length);
             MessageBox.Show("New User Created!\n User with email " + email + " created");
         }
-
-        
     }
 }

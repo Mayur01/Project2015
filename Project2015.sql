@@ -7,6 +7,7 @@ CREATE TABLE users (
   passwd CHAR(70) NOT NULL,
   a_level BIT NOT NULL DEFAULT 1
 );
+
 DROP TABLE users;
 TRUNCATE TABLE users;
 SELECT * FROM users;

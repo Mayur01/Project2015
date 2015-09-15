@@ -25,7 +25,7 @@ namespace Project2015
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = DBConnection.getConn("HP-PC\\SQLEXPRESS", "project2015");
+            SqlConnection conn = DBConnection.getConn("MAYUR\\SQLEXPRESS", "project2015");
 
             string email = textBox1.Text;
             string passwd = textBox2.Text;
@@ -38,6 +38,12 @@ namespace Project2015
             command.ExecuteNonQuery();
             MessageBox.Show("Length1:" + email.Length + "\nLength2: " + saltedHashedPass.Length);
             MessageBox.Show("New User Created!\n User with email " + email + " created");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Login ss = new Login();
+            ss.Show();
         }
     }
 }

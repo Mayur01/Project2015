@@ -21,30 +21,32 @@ namespace Project2015
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string username = textBox1.Text;
-            string password = textBox2.Text;
+            string email = textBox1.Text;
+            string passwd = textBox2.Text;
+            string saltedHashedPass;
+            //String queryUser = "SELECT * FROM users WHERE email='" + username + "'";
+            //SqlCommand command = new SqlCommand(queryUser, conn);
             SqlConnection conn = DBConnection.getConn("MAYUR\\SQLEXPRESS", "project2015");
-            SqlCommand cmd = new SqlCommand("Select * from users where Username=" + textBox1.Text + "Password =" + textBox2.Text, conn);
-            SqlDataReader dbr;
-            dbr = cmd.ExecuteReader();
-            int count = 0;
-            while (dbr.Read())
+             SqlCommand cmd = new SqlCommand("Select * from users where email=" + textBox1.Text + "passwd =" + textBox2.Text, conn);
+            SqlDataReader userData = cmd.ExecuteReader();
+            if (userData.HasRows)
             {
-                count = count + 1;
-            }
-            if(count == 1)
-            {
-                this.Hide();
-                main ss = new main();
-                ss.Show();
-            }
-            else
-            {
-                MessageBox.Show("Invalid Username or Passowrd.");
+                while (userData.Read())
 
+                {
+                    saltedHashedPass = userData["passwd"].ToString();
+                    MessageBox.Show(saltedHashedPass);
+
+                    if (Functions.ValidatePassword(passwd, saltedHashedPass));
+                    {
+                        this.Hide();
+                        main ss = new main();
+                        ss.Show();
+                    }
+                }
             }
-           
-             
+
+           else  
             if (string.IsNullOrEmpty(textBox1.Text))
             {
                 textBox1.Focus();
